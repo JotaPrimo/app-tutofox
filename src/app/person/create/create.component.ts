@@ -11,7 +11,7 @@ import { PersonService } from '../person.service';
 export class CreateComponent implements OnInit {
 
   // preciso trazer os formGroup
-  form: FormGroup;
+  form: FormGroup | any;
 
   // service and router
 
