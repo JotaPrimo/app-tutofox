@@ -23,8 +23,8 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      email: new FormControl('', [ Validators.required, Validators.email]),
-      phone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ])
+      email: new FormControl('', [ Validators.required, Validators.email ]),
+      phone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ]),
     });
   }
 

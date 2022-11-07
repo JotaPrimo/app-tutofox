@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { PersonModule } from './person/person.module';
@@ -20,7 +19,6 @@ import { PersonModule } from './person/person.module';
     AppRoutingModule,
     PersonModule,
     HttpClientModule,
-    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
