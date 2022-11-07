@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/alert.service';
 import { PersonService } from '../person.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class CreateComponent implements OnInit {
 
   constructor(
     public personService: PersonService,
+    public alertService: AlertService,
     private router: Router
   ) { }
 
@@ -37,6 +39,7 @@ export class CreateComponent implements OnInit {
     return this.personService.create(this.form.value).subscribe(
       res => {
         console.log('Person created successfully!');
+        this.alertService.success('Operação realizada com sucesso');
         this.router.navigateByUrl('person/index');
       }
     );
