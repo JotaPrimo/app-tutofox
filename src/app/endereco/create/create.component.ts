@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs';
 import { AlertService } from 'src/app/alert.service';
 import { Endereco } from '../endereco';
@@ -24,7 +25,8 @@ export class CreateComponent implements OnInit {
     public enderecoService: EnderecoService,
     private router: Router,
     public formBuilder: FormBuilder,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -42,10 +44,11 @@ export class CreateComponent implements OnInit {
     return this.enderecoService.create(this.form.value).subscribe(
       res => {
         console.log('Person created successfully!');
-        this.alertService.success('Operação realizada com sucesso');
+        this.toastrService.success('Operação realizada com sucesso', 'Teste');
         this.router.navigateByUrl('person/index');
       }, (err) => {
-        this.alertService.error('Ocorreu um erro')
+        // this.alertService.error('Ocorreu um erro')
+        this.toastrService.error('Ocorreu um erro')
       }
     )
 
