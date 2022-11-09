@@ -1,1 +1,69 @@
-<p>create works!</p>
+<div class="card">
+
+  <div class="card-header">
+    Featured
+  </div>
+
+  <div class="card-body">
+
+    <div class="d-flex justify-content-between">
+      <h4>Form customer</h4>
+      <a href="#" routerLink="/person/index" class="btn btn-primary">Back</a>
+    </div>
+
+    <hr />
+
+    <form [formGroup]="form" (submit)="submit()">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <label for="title">logradouro:</label>
+          <input formControlName="logradouro" id="logradouro" type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="form.get('logradouro')?.touched && form.get('logradouro')?.invalid">
+            <div *ngIf="form.get('logradouro')?.errors">*Logradouro is invalid.</div>
+            <div *ngIf="form.get('logradouro')?.errors">*The logradouro must only contain letters.</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="email">Tipo:</label>
+          <input formControlName="tipo" id="tipo" type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="form.get('tipo')?.touched && form.get('tipo')?.invalid">
+            <div *ngIf="form.get('tipo')?.errors">*Tipo is invalid.</div>
+            <div *ngIf="form.get('tipo')?.errors">*The Tipo must be a valid email address.</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="phone">Cidade:</label>
+          <input formControlName="cidade" id="phone" type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="form.get('cidade')?.touched && form.get('cidade')?.invalid">
+            <div *ngIf="form.get('cidade')?.errors">*Cidade is invalid.</div>
+            <div *ngIf="form.get('cidade')?.errors">*The cidade must only contain numbers.</div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="estado">Estado:</label>
+          <select formControlName="estado" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">MS</option>
+            <option value="2">MT</option>
+            <option value="3">SP</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="form.get('estado')?.touched && form.get('estado')?.invalid">
+            <div *ngIf="form.get('estado')?.errors">*Estado is invalid.</div>
+            <div *ngIf="form.get('estado')?.errors">*The estado must only contain numbers.</div>
+          </div>
+        </div>
+
+
+      </div>
+      <br>
+
+      <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button>
+    </form>
+
+  </div>
+</div>

@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'endereco', redirectTo: 'endereco/index', pathMatch: 'full' },
   { path: 'endereco/index', component: IndexComponent },
   { path: 'endereco/create', component: CreateComponent },
-  { path: 'endereco/edit/:idEndereco', component: EditComponent }
+  { path: 'endereco/edit/:idEndereco', component:EditComponent }
 ];
 
 @NgModule({

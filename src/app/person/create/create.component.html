@@ -13,39 +13,45 @@
 
     <hr />
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form">
 
       <div class="row">
 
         <div class="col-md-4">
           <label for="title">Name:</label>
           <input formControlName="name" id="name" type="text" class="form-control">
-          <div class="invalid-feedback" *ngIf="f.name.touched && f.name.invalid">
-            <div *ngIf="f.name.errors.required">*Name is required.</div>
-            <div *ngIf="f.name.errors.pattern">*The name must only contain letters.</div>
+          <div class="alert alert-danger" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+            <div *ngIf="form.get('name')?.errors">*Name is required.</div>
+            <div>*The name must only contain letters.</div>
           </div>
         </div>
 
         <div class="col-md-4">
           <label for="email">Email:</label>
           <input formControlName="email" id="email" type="text" class="form-control">
-          <div class="invalid-feedback" *ngIf="f.email.touched && f.email.invalid">
-            <div *ngIf="f.email.errors.required">*Email is required.</div>
-            <div *ngIf="f.email.errors.email">*The email must be a valid email address.</div>
+          <div class="alert alert-danger" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+            <div *ngIf="form.get('email')?.errors">*Email is required.</div>
+            <div *ngIf="form.get('email')?.errors">*The email must be a valid email address.</div>
           </div>
         </div>
 
         <div class="col-md-4">
           <label for="phone">Phone:</label>
           <input formControlName="phone" id="phone" type="text" class="form-control">
-          <div class="invalid-feedback" *ngIf="f.phone.touched && f.phone.invalid">
-            <div *ngIf="f.phone.errors.required">*Phone is required.</div>
-            <div *ngIf="f.phone.errors.pattern">*The phone must only contain numbers.</div>
+          <div class="alert alert-danger" *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">
+            <div *ngIf="form.get('phone')?.errors">*Phone is required.</div>
+            <div *ngIf="form.get('phone')?.errors">*The phone must only contain numbers.</div>
           </div>
         </div>
       </div>
       <br>
 
+
+      <p>
+        {{ form.get('name')?.errors | json }}
+        {{ form.get('name')?.touched | json }}
+        {{ form.get('name')?.dirty | json }}
+      </p>
       <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button>
     </form>
 
