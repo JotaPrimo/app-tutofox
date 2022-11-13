@@ -1,1 +1,60 @@
-<p>edit works!</p>
+<div class="container">
+
+  <div class="d-flex justify-content-between">
+    <h4>Edit endereco</h4>
+    <a href="#" routerLink="/endereco/index" class="btn btn-primary">Back</a>
+  </div>
+
+  <hr>
+
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-md-3">
+        <label for="title">Logradouro:</label>
+        <input id="logradouro" formControlName="logradouro" [(ngModel)]="endereco.logradouro" type="text"
+          class="form-control">
+        <div class="invalid-feedback" *ngIf="f.logradouro.touched && f.logradouro.invalid">
+          <div *ngIf="f.logradouro.errors.required">*Name is required.</div>
+          <div *ngIf="f.logradouro.errors.pattern">*The name must only contain letters.</div>
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <label for="tipo">Tipo:</label>
+        <input formControlName="tipo" [(ngModel)]="endereco.tipo" id="tipo" type="text" class="form-control">
+        <div *ngIf="f.tipo.touched && f.tipo.invalid" class="alert alert-danger">
+          <div *ngIf="f.tipo.errors.required">*Email is required.</div>
+          <div *ngIf="f.tipo.errors.email">*The email must be a valid email address.</div>
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <label for="cidade">Cidade:</label>
+        <input id="cidade" formControlName="cidade" [(ngModel)]="endereco.cidade" type="text" class="form-control">
+        <div class="invalid-feedback" *ngIf="f.cidade.touched && f.cidade.invalid">
+          <div *ngIf="f.cidade.errors.required">*cidade is required.</div>
+          <div *ngIf="f.cidade.errors.pattern">*The cidade must only contain numbers.</div>
+        </div>
+      </div>
+
+      <div class="col-md-3 ">
+        <label for="estado">Estado:</label>
+        <select formControlName="estado" [(ngModel)]="endereco.estado" class="form-select" aria-label="Default select example">
+          <option value="1" [selected]="endereco.estado == 1">MS</option>
+          <option value="2" [selected]="endereco.estado == 2">MT</option>
+          <option value="3" [selected]="endereco.estado == 3">SP</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="f.estado.touched && f.estado.invalid">
+          <div *ngIf="f.estado.errors.required">*estado is required.</div>
+          <div *ngIf="f.estado.errors.pattern">*The estado must only contain numbers.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <br>
+
+    <button class="btn btn-primary" (click)="submit();submitEditForm.disabled = true" #submitEditForm type="submit">Update</button>
+
+  </form>

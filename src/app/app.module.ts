@@ -13,6 +13,8 @@ import { PersonModule } from './person/person.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EnderecoModule } from './endereco/endereco.module';
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -24,13 +26,12 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     PersonModule,
     EnderecoModule,
+    UserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({})
-
-
+    ToastrModule.forRoot({}),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,24 +14,27 @@
     <hr />
 
     <form [formGroup]="form" (submit)="submit()">
-
       <div class="row">
-
         <div class="col-md-4">
-          <label for="title">logradouro:</label>
+          <label for="logradouro">Logradouro:</label>
           <input formControlName="logradouro" id="logradouro" type="text" class="form-control">
           <div class="alert alert-danger" *ngIf="form.get('logradouro')?.touched && form.get('logradouro')?.invalid">
-            <div *ngIf="form.get('logradouro')?.errors">*Logradouro is invalid.</div>
-            <div *ngIf="form.get('logradouro')?.errors">*The logradouro must only contain letters.</div>
+            <div *ngIf="form.get('logradouro')?.errors">*logradouro is invalid.</div>
+            <div *ngIf="form.get('logradouro')?.errors">*The logradouro must only contain numbers.</div>
           </div>
         </div>
 
+
         <div class="col-md-4">
-          <label for="email">Tipo:</label>
-          <input formControlName="tipo" id="tipo" type="text" class="form-control">
+          <label for="tipo">Tipo:</label>
+          <select formControlName="tipo" class="form-select" id="tipo">
+            <option value="RUA"> RUA </option>
+            <option value="AVENIDA"> AVENIDA </option>
+            <option value="TRAVESSA"> TRAVESSA </option>
+            <option value="RODOVIA"> RODOVIA </option>
+          </select>
           <div class="alert alert-danger" *ngIf="form.get('tipo')?.touched && form.get('tipo')?.invalid">
             <div *ngIf="form.get('tipo')?.errors">*Tipo is invalid.</div>
-            <div *ngIf="form.get('tipo')?.errors">*The Tipo must be a valid email address.</div>
           </div>
         </div>
 
@@ -47,7 +50,7 @@
         <div class="col-md-4">
           <label for="estado">Estado:</label>
           <select formControlName="estado" class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
+            <option selected disabled>Open this select menu</option>
             <option value="1">MS</option>
             <option value="2">MT</option>
             <option value="3">SP</option>
@@ -62,7 +65,7 @@
       </div>
       <br>
 
-      <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button>
+      <button class="btn btn-primary" #submitEditForm [disabled]="!form.valid" (click)="submit();submitEditForm.disabled = true" type="submit">Submit</button>
     </form>
 
   </div>

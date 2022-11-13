@@ -20,12 +20,26 @@ export class AlertService {
     this.showAlert(title, message, 'error');
   }
 
+  public confirm() {
+
+    return Swal.fire({
+      title: 'Tem certeza?',
+      text: "Você não poderá reverter isso!",
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, exclua!',
+      cancelButtonText: 'Cancelar!',
+    })
+  }
+
   private showAlert(
     title: string | undefined,
     message: string,
     icon: SweetAlertIcon
   ): void {
-    
+
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',

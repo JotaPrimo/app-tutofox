@@ -42,7 +42,6 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
     this.personService.update(this.idPerson, this.form.value).subscribe(
       res => {
         console.log('Person updated successfully!');

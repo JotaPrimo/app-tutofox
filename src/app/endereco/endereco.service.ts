@@ -30,12 +30,18 @@ export class EnderecoService {
     )
   }
 
-  find(idPerson: number): Observable<Endereco> {
-    return this.httpClient.get<Endereco>(this.apiURL + idPerson).pipe(
+  find(idEndereco: number): Observable<Endereco> {
+    return this.httpClient.get<Endereco>(this.apiURL + idEndereco).pipe(
       catchError(this.errorHandler)
     )
   }
 
+  update(idEndereco: number, endereco: Endereco) {
+    return this.httpClient.put<Endereco>(this.apiURL + idEndereco, JSON.stringify(endereco), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
 
   delete(idEndereco: number) {
     return this.httpClient.delete<Endereco>(this.apiURL + idEndereco, this.httpOptions).pipe(

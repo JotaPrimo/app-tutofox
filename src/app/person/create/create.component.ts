@@ -32,16 +32,13 @@ export class CreateComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
-    let result = this.personService.create(this.form.value).subscribe(
+    return this.personService.create(this.form.value).subscribe(
       res => {
         console.log('Person created successfully!');
         this.alertService.success('Operação realizada com sucesso');
         this.router.navigateByUrl('person/index');
       }
     );
-
-    console.log(result);
   }
 
 }

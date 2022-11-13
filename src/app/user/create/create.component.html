@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="card shadow p-3 mb-5 bg-body rounded">
+      <div class="card-body">
+        <form class="row g-3" [formGroup]="form">
+          <div class="col">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Your Name">
+            <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="alert alert-danger">
+              <div *ngIf="form.get('name')?.errors">Preencha o nome</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" formControlName="email" class="form-control" id="email" placeholder="Your Best Email">
+            <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="alert alert-danger">
+              <div *ngIf="form.get('email')?.errors">Preencha o Email</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" formControlName="password" class="form-control" id="password" placeholder="Your password">
+            <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="alert alert-danger">
+              <div *ngIf="form.get('password')?.errors">Preencha o Password</div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button type="submit" #submitFormCreate (click)="submit();submitFormCreate.disabled = true" [disabled]="!form.valid" class="btn btn-primary">Sign in</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

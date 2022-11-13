@@ -31,7 +31,6 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
 
-
   }
 
 
@@ -43,12 +42,10 @@ export class CreateComponent implements OnInit {
 
     return this.enderecoService.create(this.form.value).subscribe(
       res => {
-        console.log('Person created successfully!');
-        this.toastrService.success('Operação realizada com sucesso', 'Teste');
-        this.router.navigateByUrl('person/index');
+        this.alertService.success('Endereço cadastrado com sucesso')
+        this.router.navigateByUrl('endereco/index');
       }, (err) => {
-        // this.alertService.error('Ocorreu um erro')
-        this.toastrService.error('Ocorreu um erro')
+        this.toastrService.error('Ocorreu um erro', 'Erro')
       }
     )
 
