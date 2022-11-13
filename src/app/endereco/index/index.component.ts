@@ -13,6 +13,7 @@ import { EnderecoService } from '../endereco.service';
 export class IndexComponent implements OnInit {
 
   enderecos: Endereco[] = [];
+  private setEnderecos: Endereco[] | any = [];
 
   constructor(
     private enderecoService: EnderecoService,
@@ -25,7 +26,8 @@ export class IndexComponent implements OnInit {
 
   getList() {
     this.enderecoService.getAll().subscribe((data) => {
-      this.enderecos = data
+      this.setEnderecos = data;
+      this.enderecos = this.setEnderecos;
     }, (err) => {
       this.serviceAlert.error('Listagem de endereços não pode ser carregada');
     });
@@ -45,6 +47,17 @@ export class IndexComponent implements OnInit {
     })
 
   }
+
+
+  public getSearch(value: string) {
+    const filter = this.setEnderecos.filter( (res: any) => {
+      console.log(res.logradouro)
+      return !res.logradouro.toLowerCase().indexOf(value.toLowerCase());
+    });
+
+    this.enderecos = filter;
+  }
+
 
 
 }

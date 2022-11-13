@@ -8,6 +8,7 @@ import { EnderecoRoutingModule } from './endereco-routing.module';
 import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -15,7 +16,8 @@ import { EditComponent } from './edit/edit.component';
   declarations: [
     IndexComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

@@ -30,7 +30,7 @@ export class CreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.lowerCaseFields();
   }
 
 
@@ -49,6 +49,12 @@ export class CreateComponent implements OnInit {
       }
     )
 
+  }
+
+  lowerCaseFields() {
+    this.form.get('logradouro')?.valueChanges.subscribe( (event: any) => {
+      this.form.get('logradouro')?.setValue(event.toLowerCase(), {emitEvent: false})
+    })
   }
 
 

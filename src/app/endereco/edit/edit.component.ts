@@ -52,4 +52,10 @@ export class EditComponent implements OnInit {
     )
   }
 
+  lowerCaseFields() { 
+    this.form.get('logradouro')?.valueChanges.subscribe( (event: any) => {
+      this.form.get('logradouro')?.setValue(event.toLowerCase(), {emitEvent: false})
+    });
+  }
+
 }
