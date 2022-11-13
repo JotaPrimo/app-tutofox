@@ -1,1 +1,45 @@
-<p>edit works!</p>
+<div class="container">
+  <div class="row">
+
+    <div class="d-flex flex-row-reverse mt-2">
+      <a href="#" class="btn btn-sm btn-primary" [routerLink]="['/user/list']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-arrow-left">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Voltar
+      </a>
+    </div>
+
+    <div class="card shadow p-3 mb-5 bg-body rounded">
+      <div class="card-body">
+        <form class="row g-3" [formGroup]="form">
+          <div class="col">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" formControlName="name" [(ngModel)]="user.name" class="form-control" id="name"
+              placeholder="Your Name">
+            <div class="alert alert-danger" *ngIf="f.name.touched && f.name.invalid">
+              <div>Preencha o nome</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" formControlName="email" [(ngModel)]="user.email" class="form-control" id="email"
+              placeholder="Your Best Email">
+            <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
+              <div>Preencha o Email</div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button type="submit" #formEditSubmit (click)="submit();formEditSubmit.disabled = true" [disabled]="!form.valid" class="btn btn-primary">Sign in</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

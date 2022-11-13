@@ -30,12 +30,17 @@ export class UserService extends ServiceService {
       .pipe(catchError(this.errorHandler))
   }
 
-  update(idUser: number): Observable<User> {
-    return this.httpClient.put<User>(this.apiURL, this.httpOptions).pipe(catchError(this.errorHandler))
+  update(idUser: number, user: User) {
+    return this.httpClient.put<User>(this.apiURL + idUser, JSON.stringify(user), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
   }
 
   delete(idUser: number) {
-    return this.httpClient.delete<User>(this.apiURL, this.httpOptions).pipe(catchError(this.errorHandler))
+    return this.httpClient.delete<User>(this.apiURL + idUser, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+        )
   }
-
 }

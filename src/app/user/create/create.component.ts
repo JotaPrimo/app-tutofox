@@ -13,8 +13,7 @@ export class CreateComponent implements OnInit {
 
   form: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.pattern("(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$")])
+    email: new FormControl('', [Validators.required, Validators.email])    
   });
 
   constructor(

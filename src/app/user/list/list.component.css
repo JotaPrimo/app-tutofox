@@ -1,0 +1,8 @@
+.card-row:hover {
+  box-shadow: 0 0 11px grey;
+  border-style: solid;
+}
+
+.link-clicavel {
+  cursor: pointer;
+}

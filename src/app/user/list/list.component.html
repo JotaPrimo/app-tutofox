@@ -23,19 +23,11 @@
         ID
       </div>
       <div class="col">
-        Logradouro
+        Name
       </div>
       <div class="col">
-        Tipo
-      </div>
-
-      <div class="col">
-        Cidade
-      </div>
-
-      <div class="col">
-        Estado
-      </div>
+        Email
+      </div>     
 
       <div class="col">
         Ações
@@ -44,38 +36,34 @@
   </div>
 
 
-  <div class="card mb-2">
-
-    <div class="card-body card-row">
-      <div class="row" *ngFor="let user of users">
+  <div class="card mb-2 card-row" *ngFor="let user of users">
+    <div class="card-body">
+      <div class="row">
         <div class="col-1">
-          .id
+          {{ user.id }}
         </div>
         <div class="col">
-          .logradouro
+          {{ user.name }}
         </div>
         <div class="col">
-          .tipo
-        </div>
-
-        <div class="col">
-          .cidade
-        </div>
-
-        <div class="col">
-
-        </div>
+          {{ user.email }}
+        </div>      
 
 
         <div class="col">
-          <a href="#">
+
+
+          <a [routerLink]="['/user/edit/', user.id]"
+          routerLinkActive="router-link-active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-edit-2">
               <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
             </svg>
           </a>
-          <a>
+
+
+          <a (click)="delete(user.id)" class="link-clicavel">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-trash">
@@ -83,6 +71,8 @@
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
             </svg>
           </a>
+
+
         </div>
 
       </div>

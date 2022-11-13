@@ -43,7 +43,7 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
+    
     this.enderecoService.update(this.idEndereco, this.form.value).subscribe(
       res => {
         this.alertService.success('Dados atualizados com sucesso', 'Tudo Certo')

@@ -30,18 +30,20 @@ export class ListComponent implements OnInit {
     })
   }
 
-  delete(idUser: number) {
+  delete(idUser: number) {   
+
     this.serviceAlert.confirm().then((result) => {
       if (result.isConfirmed) {
-        this.userService.delete(idUser).subscribe((res) => {
-          this.serviceAlert.success('User deletado com sucesso');
+        this.userService.delete(idUser).subscribe(res => {
+          this.serviceAlert.success('Registro deletado com sucesso', 'Tudo Certo')
           this.users = this.users.filter(item => item.id !== idUser);
         }, (err) => {
-          this.serviceAlert.error('Ocorreu um erro')
-        })
+          this.serviceAlert.error('Não foi deletar', 'Erro');
+        });
       }
     })
   }
+
 
 
 
