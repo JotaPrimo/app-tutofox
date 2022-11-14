@@ -15,11 +15,13 @@ import { EnderecoModule } from './endereco/endereco.module';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { UserModule } from './user/user.module';
+import { FormsComponent } from './forms/forms.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,

@@ -50,7 +50,7 @@
         {{ form.get('name')?.touched | json }}
         {{ form.get('name')?.dirty | json }}
       </p>
-      <button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button>
+      <button class="btn btn-primary" (click)="submit();formSubmitCreate.disabled = true" #formSubmitCreate [disabled]="!form.valid" type="submit">Submit</button>
     </form>
 
   </div>

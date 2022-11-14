@@ -1,0 +1,149 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+
+      {{ form.value | json }}
+      <br>
+      <br>
+      Form: {{ form.valid }}
+
+      <div class="card">
+        <div class="card-body shadow">
+
+          <form class="row g-3" #form="ngForm" (ngSubmit)="submitForm(form)">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="text" #nome="ngModel" placeholder="Informe seu melhor email" [ngModel]="nome.value" name="nome" required class="form-control"
+                id="nome">
+
+                <div *ngIf="nome.valid" class="text-success">
+                  Tudo Certo
+                </div>
+
+              <div *ngIf="!nome.valid && (nome.touched && nome.dirty)" class="alert alert-danger" role="alert">
+                Este campo está com valor incorreto
+              </div>
+
+              <div *ngIf="nome.valid" class="alert alert-success" role="alert">
+                Este campo está com valor válido
+              </div>
+
+
+
+
+              valid : {{ nome.valid }}
+              <br>
+              dirty : {{ nome.dirty }}
+              <br>
+              touched: {{ nome.touched }}
+
+              <br>
+
+
+
+
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Password</label>
+              <input type="password" ngModel name="password" class="form-control" id="password">
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" ngModel name="sexo" type="radio" value="masculino"
+                    id="sexo.masculino">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Masculino
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" ngModel name="sexo" type="radio" value="feminino"
+                    id="flexCheckChecked" checked>
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Feminino
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input class="form-check-input" ngModel name="sexo" type="radio" value="outros" id="flexCheckChecked"
+                    checked>
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Outros
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-check">
+              <input class="form-check-input" ngModel name="vue" type="checkbox" value="Vue checkbox"
+                id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Vue checkbox
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" ngModel name="angular" type="checkbox" value="Angular checkbox"
+                id="flexCheckChecked" checked>
+              <label class="form-check-label" for="flexCheckChecked">
+                Angular checkbox
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" ngModel name="react" type="checkbox" value="React checkbox"
+                id="flexCheckChecked" checked>
+              <label class="form-check-label" for="flexCheckChecked">
+                React checkbox
+              </label>
+            </div>
+
+            <select class="form-select" name="comida" ngModel>
+              <option disabled selected>Open this select menu</option>
+              <option *ngFor="let item of listComidas" [value]="item.id"> {{ item.comida }} </option>
+
+            </select>
+
+
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">State</label>
+              <select id="inputState" class="form-select">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label for="inputZip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                  Check me out
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" #btnSubmit [disabled]="!form.valid" class="btn btn-primary">Sign in</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

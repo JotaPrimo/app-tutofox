@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { delay } from 'rxjs';
+import { AlertService } from 'src/app/alert.service';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
 
@@ -18,12 +21,14 @@ export class EditComponent implements OnInit {
   constructor(
     public personService: PersonService,
     private route: ActivatedRoute,
+    private alertService: AlertService,
+    private toastrService: ToastrService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.idPerson = this.route.snapshot.params['idPerson'];
-    this.personService.find(this.idPerson).subscribe(
+    this.personService.find(this.idPerson).pipe(delay(200)).subscribe(
       (data: Person) => {
         this.person = data
       }
@@ -44,7 +49,7 @@ export class EditComponent implements OnInit {
   submit() {
     this.personService.update(this.idPerson, this.form.value).subscribe(
       res => {
-        console.log('Person updated successfully!');
+       this.toastrService.success('Atualizado  com sucesso', 'Tudo Certo');
         this.router.navigateByUrl('person/index');
       }
     )
