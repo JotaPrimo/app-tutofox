@@ -17,13 +17,15 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { UserModule } from './user/user.module';
 import { FormsComponent } from './forms/forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FormsComponent,
-    ReactiveFormsComponent
+    ReactiveFormsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

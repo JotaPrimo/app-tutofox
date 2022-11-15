@@ -27,33 +27,35 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.idPerson = this.route.snapshot.params['idPerson'];
-    this.personService.find(this.idPerson).pipe(delay(200)).subscribe(
-      (data: Person) => {
-        this.person = data
-      }
-    );
-
+    this.getPerson();
     this.initForm();
-
   }
 
   get f() {
     return this.form.controls;
   }
 
+  private getPerson() {
+    this.idPerson = this.route.snapshot.params['idPerson'];
+    this.personService.find(this.idPerson).pipe(delay(200)).subscribe(
+      (data: Person) => {
+        this.person = data
+      }
+    );
+  }
+
   private initForm() {
     this.form = new FormGroup({
-      name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      email: new FormControl('', [ Validators.required, Validators.email]),
-      phone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ])
+      name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+')]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")])
     });
   }
 
   submit() {
     this.personService.update(this.idPerson, this.form.value).subscribe(
       res => {
-       this.toastrService.success('Atualizado  com sucesso', 'Tudo Certo');
+        this.toastrService.success('Atualizado  com sucesso', 'Tudo Certo');
         this.router.navigateByUrl('person/index');
       }
     )
