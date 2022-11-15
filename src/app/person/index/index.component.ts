@@ -32,16 +32,20 @@ export class IndexComponent implements OnInit {
   }
 
   delete(idPerson: number) {
-    this.personService.delete(idPerson).subscribe(
-      res => {
-        this.alertService.success('Person deletada com sucesso', 'Tudo Certo');
-        this.persons = this.persons.filter(item => item.id !== idPerson);
-      },
-      // Caso de erro
-      (err) => {
-        this.alertService.success('Ocorreu um erro', 'Erro')
+    this.alertService.confirm().then((result) => {
+      if (result.isConfirmed) {
+        this.personService.delete(idPerson).subscribe(
+          res => {
+            this.alertService.success('Person deletada com sucesso', 'Tudo Certo');
+            this.persons = this.persons.filter(item => item.id !== idPerson);
+          },
+          // Caso de erro
+          (err) => {
+            this.alertService.success('Ocorreu um erro', 'Erro')
+          }
+        );
       }
-    );
+    })
 
   }
 

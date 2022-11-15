@@ -30,6 +30,10 @@ export class EditComponent implements OnInit {
       this.endereco = data;
     });
 
+    this.initForm();
+  }
+
+  initForm() {
     this.form = new FormGroup({
       logradouro: new FormControl('', [ Validators.required ]),
       tipo: new FormControl('', [ Validators.required ]),
@@ -43,7 +47,7 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
-    
+
     this.enderecoService.update(this.idEndereco, this.form.value).subscribe(
       res => {
         this.alertService.success('Dados atualizados com sucesso', 'Tudo Certo')
@@ -52,7 +56,7 @@ export class EditComponent implements OnInit {
     )
   }
 
-  lowerCaseFields() { 
+  lowerCaseFields() {
     this.form.get('logradouro')?.valueChanges.subscribe( (event: any) => {
       this.form.get('logradouro')?.setValue(event.toLowerCase(), {emitEvent: false})
     });

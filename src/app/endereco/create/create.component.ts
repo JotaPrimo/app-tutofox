@@ -23,10 +23,9 @@ export class CreateComponent implements OnInit {
 
   constructor(
     public enderecoService: EnderecoService,
-    private router: Router,
     public formBuilder: FormBuilder,
-    private alertService: AlertService,
-    private toastrService: ToastrService
+    public alertService: AlertService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -40,14 +39,12 @@ export class CreateComponent implements OnInit {
 
   submit() {
 
-    alert('asdsdasdasdasdasdas');
-
     return this.enderecoService.create(this.form.value).subscribe(
       res => {
         this.alertService.success('Endereço cadastrado com sucesso')
         this.router.navigateByUrl('endereco/index');
       }, (err) => {
-        this.toastrService.error('Ocorreu um erro', 'Erro')
+        this.alertService.error('Ocorreu um erro', 'Erro')
       }
     )
 

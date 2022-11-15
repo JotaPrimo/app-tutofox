@@ -13,11 +13,14 @@ import { PersonModule } from './person/person.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EnderecoModule } from './endereco/endereco.module';
 import { ToastrModule } from 'ngx-toastr';
-import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { UserModule } from './user/user.module';
 import { FormsComponent } from './forms/forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { IndexComponent } from './pages/livro/index/index.component';
+import { CreateComponent } from './pages/livro/create/create.component';
+import { EditComponent } from './pages/livro/edit/edit.component';
+import { LivroModule } from './livro/livro.module';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AppComponent,
     FormsComponent,
     ReactiveFormsComponent,
-    NavbarComponent
+    NavbarComponent,
+    IndexComponent,
+    CreateComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +39,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     PersonModule,
     EnderecoModule,
     UserModule,
+    LivroModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
