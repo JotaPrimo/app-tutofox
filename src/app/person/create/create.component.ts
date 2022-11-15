@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/alert.service';
+import { Person } from '../person';
 import { PersonService } from '../person.service';
 
 @Component({
@@ -11,11 +12,13 @@ import { PersonService } from '../person.service';
 })
 export class CreateComponent implements OnInit {
 
+  person: Person | any;
+
   // preciso trazer os formGroup
   public form: FormGroup = this.formBuilder.group({
-    name:  new FormControl('', [ Validators.required ]),
+    name:  new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(15) ]),
     email: new FormControl('', [ Validators.required, Validators.email ]),
-    phone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ]),
+    phone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ])
   });
 
   // service and router
@@ -29,6 +32,10 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   submit() {

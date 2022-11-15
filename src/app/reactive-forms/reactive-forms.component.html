@@ -1,0 +1,25 @@
+<form [formGroup]="cadastroForm">
+  <div class="row g-3">
+    <div class="col">
+      <input type="text" #name minlength="5" class="form-control" placeholder="First name"  formControlName="name">
+
+      <span class="text-danger" *ngIf="cadastroForm.get('name')?.invalid && (cadastroForm.get('name')?.touched && cadastroForm.get('name')?.dirty)">
+
+      </span>
+
+      <span class="text-danger" *ngIf="cadastroForm.get('name')?.invalid && (cadastroForm.get('name')?.dirty && cadastroForm.get('name')?.touched) ">
+        Minimo de {{ name.minLength }}, você escreveu  {{ name.value.length }} <br>
+      </span>
+
+      <span class="text-success" *ngIf="cadastroForm.get('name')?.valid">
+        Tá Tudo Certo
+      </span>
+
+      <br>
+      {{ cadastroForm.get('name')?.value | json }}
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+    </div>
+  </div>
+</form>

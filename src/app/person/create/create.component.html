@@ -17,10 +17,10 @@
       <div class="row">
         <div class="col-md-4">
           <label for="title">Name:</label>
-          <input formControlName="name" id="name" type="text" class="form-control">
+          <input formControlName="name" #name minlength="5" id="name" type="text" class="form-control">
           <div class="alert alert-danger" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
-            <div *ngIf="form.get('name')?.errors">*Name is required.</div>
-            <div>*The name must only contain letters.</div>
+            <div *ngIf="form.get('name')?.errors?.['required']">*Name is required.</div>
+            <div *ngIf="name.minLength">*Minimo de 5 caracteres.</div>
           </div>
         </div>
 
@@ -28,8 +28,8 @@
           <label for="email">Email:</label>
           <input formControlName="email" id="email" type="text" class="form-control">
           <div class="alert alert-danger" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-            <div *ngIf="form.get('email')?.errors">*Email is required.</div>
-            <div *ngIf="form.get('email')?.errors">*The email must be a valid email address.</div>
+            <div *ngIf="form.get('email')?.errors?.['required'] ">*Email is required.</div>
+            <div *ngIf="form.get('email')?.errors?.['email']">*The email must be a valid email address.</div>
           </div>
         </div>
 
@@ -38,7 +38,7 @@
           <input formControlName="phone" id="phone" type="text" class="form-control">
           <div class="alert alert-danger" *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">
             <div *ngIf="form.get('phone')?.errors">*Phone is required.</div>
-            <div *ngIf="form.get('phone')?.errors">*The phone must only contain numbers.</div>
+            <div *ngIf="form.get('phone')?.errors?.['pattern'] ">*The phone must only contain numbers.</div>
           </div>
         </div>
       </div>

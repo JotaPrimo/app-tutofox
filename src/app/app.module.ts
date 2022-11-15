@@ -16,12 +16,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { UserModule } from './user/user.module';
 import { FormsComponent } from './forms/forms.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormsComponent
+    FormsComponent,
+    ReactiveFormsComponent
   ],
   imports: [
     BrowserModule,
