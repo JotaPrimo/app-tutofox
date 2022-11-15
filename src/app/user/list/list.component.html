@@ -17,7 +17,7 @@
   <br>
 
 
-  <div class="shadow-sm p-3 mb-2 bg-light  rounded">
+  <div class="shadow-sm p-3 mb-2 bg-light rounded">
     <div class="row">
       <div class="col-1">
         ID
@@ -27,7 +27,7 @@
       </div>
       <div class="col">
         Email
-      </div>     
+      </div>
 
       <div class="col">
         Ações
@@ -47,14 +47,13 @@
         </div>
         <div class="col">
           {{ user.email }}
-        </div>      
+        </div>
 
 
         <div class="col">
 
 
-          <a [routerLink]="['/user/edit/', user.id]"
-          routerLinkActive="router-link-active">
+          <a [routerLink]="['/user/edit/', user.id]" routerLinkActive="router-link-active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-edit-2">

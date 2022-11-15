@@ -1,43 +1,74 @@
 <section>
   <div class="d-flex justify-content-between">
-    <h4>List person</h4>
-    <a class="btn btn-success" routerLink="/person/create">Create New Person</a>
+    <h4>List of Persons</h4>
+    <a class="btn btn-success btn-sm" routerLink="/person/create">Create New Person</a>
   </div>
 
   <br>
 
-  <table class="table ">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th width="220px">Action</th>
-    </tr>
-    <tr *ngFor="let person of persons">
-      <td> {{ person.id }} </td>
-      <td> {{ person.name }} </td>
-      <td> {{ person.email }} </td>
-      <td> {{ person.phone }} </td>
-      <td>
-        <a href="#" [routerLink]="['/person/edit/', person.id]" title="Clique aqui para editar">
+  <hr>
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-edit-2">
-            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-          </svg>
-        </a>
-        <a type="button" (click)="delete(person.id)" title="Clique para excluir by Jéssica Helena">
+  <div class="container">
+    <div class="row mb-3 shadow-sm p-3 mb-2 bg-light rounded">
+      <div class="col-1">
+        ID
+      </div>
+      <div class="col">
+        Name
+      </div>
+      <div class="col">
+        Email
+      </div>
 
-          <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-trash">
-            <polyline points="3 6 5 6 21 6"></polyline>
-            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-          </svg>
-        </a>
-      </td>
-    </tr>
-  </table>
+      <div class="col">
+        Phone
+      </div>
+
+      <div class="col">
+        Ações
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-2" *ngFor="let person of persons as list">
+    <div class="card-body card-row">
+      <div class="row">
+        <div class="col-1">
+          {{ person.id }}
+        </div>
+        <div class="col">
+          {{ person.name }}
+        </div>
+        <div class="col">
+          {{ person.email }}
+        </div>
+
+        <div class="col">
+          {{ person.phone }}
+        </div>
+
+
+        <div class="col">
+          <a href="#" [routerLink]="['/person/edit/', person.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-edit-2">
+              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+            </svg>
+          </a>
+          <a (click)="delete(person.id)" style="cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-trash">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
 </section>
