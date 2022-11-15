@@ -33,8 +33,8 @@ export class CreateComponent implements OnInit {
 
   initForm() {
     this.form = this.formBuilder.group({
-      titulo: new FormControl('', [ Validators.required, Validators.maxLength(15),Validators.minLength(5), Validators.pattern("[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$") ]),
-      autor: new FormControl('', [ Validators.required ]),
+      titulo: new FormControl('', [ Validators.required, Validators.maxLength(15), Validators.minLength(5), Validators.pattern("[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$") ]),
+      autor: new FormControl('', [ Validators.required, Validators.maxLength(5), Validators.minLength(5), Validators.pattern('([aA-zZ]+)') ]),
       isbn: new FormControl('', [ Validators.required ]),
       qntd_exemplares: new FormControl('', [ Validators.required ])
     });

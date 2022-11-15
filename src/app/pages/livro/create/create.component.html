@@ -1,50 +1,57 @@
+Featured
 
+<div class="d-flex justify-content-between">
+  <h4>Form customer</h4>
+  <a class="btn btn-primary" routerLink="/livro/index">Back</a>
+</div>
 
-    Featured
+<hr />
 
-    <div class="d-flex justify-content-between">
-      <h4>Form customer</h4>
-      <a class="btn btn-primary" routerLink="/livro/index">Back</a>
-    </div>
-
-    <hr />
-
-    <form [formGroup]="form">
-      <div class="row">
-        <div class="col-md-4">
-          <label for="titulo">Título:</label>
-          <input id="titulo" type="text" minlength="5" maxlength="15" formControlName="titulo" #titulo placeholder="Informo título do livro" class="form-control">
-          <div class="alert alert-danger" *ngIf="formControls.titulo.invalid && formControls.titulo.dirty ">
-            <div *ngIf="formControls.titulo.hasError('minlength')">*Título deve ter ao menos {{ titulo.minLength }} caracteres. Você inseriu {{ formControls.titulo.errors.minlength.actualLength }} </div>
-            <div *ngIf="">*Título deve ter no máximo 15 caracteres.</div>
-            <div *ngIf="formControls.titulo.errors.pattern">*Titulo não ter numeros nem caracteres especiais nem números</div>
-          </div>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-4">
+      <label for="titulo">Título:</label>
+      <input id="titulo" type="text" minlength="5" maxlength="10" formControlName="titulo" #titulo
+        placeholder="Informo título do livro" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="formControls.titulo.invalid && (formControls.titulo.dirty && formControls.titulo.touched) ">
+        <div *ngIf="formControls.titulo.hasError('minlength')">*Título deve ter ao menos {{
+          formControls.titulo?.errors?.minlength?.requiredLength }} caracteres. Você inseriu {{
+          formControls.titulo.errors.minlength.actualLength }} </div>
+        <div *ngIf="formControls.titulo.hasError('maxlength') ">*Título deve ter no máximo 15 caracteres.</div>
+        <div *ngIf="formControls.titulo.errors.pattern">*Titulo não ter numeros nem caracteres especiais nem números
         </div>
       </div>
+    </div>
 
-      <button class="btn btn-primary" type="submit">Submit</button>
-      <br>
-      <div class="alert alert-danger" role="alert">
-        A simple danger alert—check it out!
+    <div class="col-md-4">
+      <label for="titulo">Autor:</label>
+      <input id="titulo" type="text" formControlName="autor" #autor minlength="5" maxlength="20"  placeholder="Informe o autor do livro" class="form-control">
+      <div class="alert alert-danger" *ngIf="formControls.autor.invalid && (formControls.autor.dirty && formControls.autor.touched) ">
+        <div *ngIf="formControls.autor.errors.minlength">*Título deve ter ao menos caracteres.</div>
+        <div *ngIf="formControls.autor.errors.maxlength">*Título deve ter no máximo 15 caracteres.</div>
+        <div *ngIf="formControls.autor.errors.pattern">*Titulo não ter numeros nem caracteres especiais nem números</div>
       </div>
+    </div>
+
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <br>
+
+  <p>
+    formControls minLength : {{ formControls.titulo?.errors?.minLength | json }} <br>
+    formControls requerid : {{ formControls.titulo?.errors?.required | json }} <br>
+    formControls pattern : {{ formControls.titulo?.errors?.pattern | json }} <br>
+    formControls invalid : {{ formControls.invalid | json }} <br>
+    minLength : {{ titulo.minLength | json }} <br>
+    maxLength : {{ titulo.maxLength | json }} <br>
+    formControls ERRORS : {{ formControls.titulo?.errors | json }} <br>
+
+    formControls touched : {{ formControls.titulo.touched | json }} <br>
+    formControls dirty : {{ formControls.titulo.dirty | json }} <br>
+    formControls minLength {{ formControls.titulo?.errors?.minlength?.requiredLength }}
+  </p>
 
 
-
-      <p>
-        formControls minLength : {{ formControls.titulo.errors.minLength | json }} <br>
-        formControls requerid : {{ formControls.titulo.errors.required | json }} <br>
-        formControls pattern : {{ formControls.titulo.errors.pattern | json }} <br>
-        formControls invalid : {{ formControls.invalid | json }} <br>
-         minLength : {{ titulo.minLength | json }} <br>
-         maxLength : {{ titulo.maxLength | json }} <br>
-        formControls ERRORS : {{ formControls.titulo.errors | json }} <br>
-
-        formControls touched : {{ formControls.titulo.touched | json }} <br>
-        formControls dirty : {{ formControls.titulo.dirty | json }} <br>
-        minLength {{ titulo.minLength }}
-      </p>
-
-
-    </form>
-
-
+</form>
