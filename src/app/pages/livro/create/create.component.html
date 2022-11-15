@@ -26,31 +26,55 @@ Featured
 
     <div class="col-md-4">
       <label for="titulo">Autor:</label>
-      <input id="titulo" type="text" formControlName="autor" #autor minlength="5" maxlength="20"  placeholder="Informe o autor do livro" class="form-control">
-      <div class="alert alert-danger" *ngIf="formControls.autor.invalid && (formControls.autor.dirty && formControls.autor.touched) ">
+      <input id="titulo" type="text" formControlName="autor" #autor minlength="5" maxlength="20"
+        placeholder="Informe o autor do livro" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="formControls.autor.invalid && (formControls.autor.dirty && formControls.autor.touched) ">
         <div *ngIf="formControls.autor.errors.minlength">*Título deve ter ao menos caracteres.</div>
         <div *ngIf="formControls.autor.errors.maxlength">*Título deve ter no máximo 15 caracteres.</div>
-        <div *ngIf="formControls.autor.errors.pattern">*Titulo não ter numeros nem caracteres especiais nem números</div>
+        <div *ngIf="formControls.autor.errors.pattern">*Titulo não ter numeros nem caracteres especiais nem números
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <label for="titulo">ISBN:</label>
+      <input id="titulo" type="text" formControlName="isbn" #isbn mask="000-00-00-00000-0"
+        placeholder="Informe o ISBN do livro" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="formControls.isbn.invalid && (formControls.isbn.touched && formControls.isbn.dirty) ">
+        <div *ngIf="isbn.value.length < 17">*ISBN deve ter ao menos 17 caracteres.</div>
+        <div *ngIf="isbn.value.length > 17">*ISBN deve ter no máximo 17 caracteres.</div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="qntd_exemplares">Qntd Exemplares:</label>
+      <input id="qntd_exemplares" formControlName="qntd_exemplares" min="1" max="100" #qntd_exemplares type="number"
+        placeholder="Informe Qntd Exemplares livro" class="form-control">
+      <div class="alert alert-danger"
+        *ngIf="formControls.qntd_exemplares.invalid && (formControls.qntd_exemplares.touched && formControls.qntd_exemplares.dirty) ">
+        <div *ngIf="formControls.qntd_exemplares?.errors?.min">*Qntd Exemplares não pode ser menor que 1.</div>
+        <div *ngIf="formControls.qntd_exemplares?.errors?.max">*Qntd Exemplares não pode ser menor que 1000.</div>
       </div>
     </div>
 
   </div>
 
-  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-primary" (click)="submit();btnSubmit.disabled = true" #btnSubmit [disabled]="!form.valid" type="submit">Submit</button>
   <br>
 
   <p>
-    formControls minLength : {{ formControls.titulo?.errors?.minLength | json }} <br>
-    formControls requerid : {{ formControls.titulo?.errors?.required | json }} <br>
-    formControls pattern : {{ formControls.titulo?.errors?.pattern | json }} <br>
-    formControls invalid : {{ formControls.invalid | json }} <br>
-    minLength : {{ titulo.minLength | json }} <br>
-    maxLength : {{ titulo.maxLength | json }} <br>
-    formControls ERRORS : {{ formControls.titulo?.errors | json }} <br>
+    <!-- formControls minLength : {{ formControls.qntd_exemplares?.errors?.minLength | json }} <br>
+    formControls maxLength : {{ formControls.qntd_exemplares?.errors?.maxLength | json }} <br>
+    formControls pattern : {{ formControls.qntd_exemplares?.errors?.pattern | json }} <br>
+    formControls invalid : {{ formControls.invalid | json }} <br> -->
+    formControls ERRORS : {{ formControls.qntd_exemplares?.errors?.max | json }} <br>
+    <!-- formControls ERRORS : {{ qntd_exemplares.value.length | json }} <br> -->
+    <!-- formControls touched : {{ formControls.qntd_exemplares.touched | json }} <br>
+    formControls dirty : {{ formControls.qntd_exemplares.dirty | json }} <br> -->
 
-    formControls touched : {{ formControls.titulo.touched | json }} <br>
-    formControls dirty : {{ formControls.titulo.dirty | json }} <br>
-    formControls minLength {{ formControls.titulo?.errors?.minlength?.requiredLength }}
   </p>
 
 

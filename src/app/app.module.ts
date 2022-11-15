@@ -21,6 +21,7 @@ import { IndexComponent } from './pages/livro/index/index.component';
 import { CreateComponent } from './pages/livro/create/create.component';
 import { EditComponent } from './pages/livro/edit/edit.component';
 import { LivroModule } from './livro/livro.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { LivroModule } from './livro/livro.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({}),
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

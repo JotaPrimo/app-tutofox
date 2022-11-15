@@ -21,6 +21,7 @@
     "@popperjs/core": "^2.11.6",
     "angular-confirmation-popover": "^6.0.0",
     "bootstrap": "^5.2.2",
+    "ngx-mask": "^14.2.4",
     "ngx-toastr": "^15.2.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.6",

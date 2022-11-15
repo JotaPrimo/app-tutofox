@@ -34,14 +34,21 @@ export class CreateComponent implements OnInit {
   initForm() {
     this.form = this.formBuilder.group({
       titulo: new FormControl('', [ Validators.required, Validators.maxLength(15), Validators.minLength(5), Validators.pattern("[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$") ]),
-      autor: new FormControl('', [ Validators.required, Validators.maxLength(5), Validators.minLength(5), Validators.pattern('([aA-zZ]+)') ]),
+      autor: new FormControl('', [ Validators.required ]),
       isbn: new FormControl('', [ Validators.required ]),
       qntd_exemplares: new FormControl('', [ Validators.required ])
     });
   }
 
-  submit() {
+  public converterParaInteiro(valor: string) {
+    return parseInt(valor);
+  }
 
+  submit() {
+    return this.livroService.create(this.form.value).subscribe((res) => {
+      this.alertService.success('Livro cadastrado com sucesso');
+      this.router.navigateByUrl('livro/index');
+    })
   }
 
   upperCaseFields() {
