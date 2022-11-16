@@ -13,7 +13,8 @@ export class CreateComponent implements OnInit {
 
   form: FormGroup = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email])    
+    email: new FormControl('', [Validators.required, Validators.email]),
+    tipo_user: new FormControl('',  [Validators.required])
   });
 
   constructor(
@@ -34,13 +35,10 @@ export class CreateComponent implements OnInit {
   submit() {
     return this.userService.create(this.form.value).subscribe(
       res => {
-        this.serviceAlert.success('User cadastrado com sucesso')
-        this.router.navigateByUrl('user/list')
-      }, err => {
-        this.serviceAlert.success('Ocorreu um erro')
-        // this.router.navigateByUrl('users/list')
+        this.serviceAlert.success('Operação realizada com sucesso');
+        this.router.navigateByUrl('user');
       }
-    )
+    );
   }
 
 }

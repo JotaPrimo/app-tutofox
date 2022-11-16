@@ -30,6 +30,10 @@
       </div>
 
       <div class="col">
+        Tipo User
+      </div>
+
+      <div class="col">
         Ações
       </div>
     </div>
@@ -49,10 +53,14 @@
           {{ user.email }}
         </div>
 
+        <div class="col">
+          <div [ngSwitch]="user.tipo_user">
+            <div *ngSwitchCase="1">Administrador</div>
+            <div *ngSwitchCase="2">Comum</div>
+          </div>
+        </div>
 
         <div class="col">
-
-
           <a [routerLink]="['/user/edit/', user.id]" routerLinkActive="router-link-active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
