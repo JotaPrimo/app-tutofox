@@ -30,9 +30,6 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsComponent,
     ReactiveFormsComponent,
     NavbarComponent,
-    IndexComponent,
-    CreateComponent,
-    EditComponent
   ],
   imports: [
     BrowserModule,

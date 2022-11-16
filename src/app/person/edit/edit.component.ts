@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { delay } from 'rxjs';
-import { AlertService } from 'src/app/alert.service';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
 
@@ -21,7 +20,6 @@ export class EditComponent implements OnInit {
   constructor(
     public personService: PersonService,
     private route: ActivatedRoute,
-    private alertService: AlertService,
     private toastrService: ToastrService,
     private router: Router
   ) { }

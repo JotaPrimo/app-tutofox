@@ -1,1 +1,75 @@
-<p>edit works!</p>
+Featured
+
+<div class="d-flex justify-content-between">
+  <h4>Form customer</h4>
+  <a class="btn btn-primary" routerLink="/livro/index">Back</a>
+</div>
+
+<hr />
+
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-4">
+      <label for="titulo">Título:</label>
+      <input id="titulo" type="text" minlength="5" maxlength="10" formControlName="titulo" #titulo  [(ngModel)]="livro.titulo"
+        placeholder="Informo título do livro" class="form-control">
+      <div class="alert alert-danger" *ngIf="formControls?.titulo.invalid && (formControls?.titulo?.touched && formControls?.titulo.dirty) ">
+        <div>*Título deve ter ao menos caracteres. Você inseriu </div>
+        <div>*Título deve ter no máximo 15 caracteres.</div>
+        <div>*Titulo não ter numeros nem caracteres especiais nem números
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="autor">Autor:</label>
+      <input id="autor" type="text" formControlName="autor" [(ngModel)]="livro.autor" #autor minlength="5" maxlength="20"
+        placeholder="Informe o autor do livro" class="form-control">
+      <div class="alert alert-danger" *ngIf="formControls.autor.invalid && (formControls.autor.touched && formControls.autor.dirty)  ">
+        <div>*Título deve ter ao menos caracteres.</div>
+        <div>*Título deve ter no máximo 15 caracteres.</div>
+        <div>*Titulo não ter numeros nem caracteres especiais nem números
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <label for="titulo">ISBN:</label>
+      <input id="titulo" type="text" [(ngModel)]="livro.isbn" formControlName="isbn" #isbn mask="000-00-00-00000-0"
+        placeholder="Informe o ISBN do livro" class="form-control">
+      <div class="alert alert-danger" *ngIf="formControls.isbn.invalid && (formControls.isbn.touched && formControls.isbn.dirty )">
+        <div>*ISBN deve ter ao menos 17 caracteres.</div>
+        <div>*ISBN deve ter no máximo 17 caracteres.</div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="qntd_exemplares">Qntd Exemplares:</label>
+      <input id="qntd_exemplares" [(ngModel)]="livro.qntd_exemplares" formControlName="qntd_exemplares" min="1" max="100" #qntd_exemplares type="number"
+        placeholder="Informe Qntd Exemplares livro" class="form-control">
+      <div class="alert alert-danger" *ngIf="formControls.qntd_exemplares.invalid && (formControls.qntd_exemplares.touched && formControls.qntd_exemplares.dirty )">
+        <div>*Qntd Exemplares não pode ser menor que 1.</div>
+        <div>*Qntd Exemplares não pode ser menor que 1000.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="btn btn-primary" (click)="submit();btnSubmit.disabled = true" #btnSubmit [disabled]="!form.valid" type="submit">Submit</button>
+  <br>
+
+  <p>
+    <!-- formControls minLength : {{ formControls.qntd_exemplares?.errors?.minLength | json }} <br>
+    formControls maxLength : {{ formControls.qntd_exemplares?.errors?.maxLength | json }} <br>
+    formControls pattern : {{ formControls.qntd_exemplares?.errors?.pattern | json }} <br>
+    formControls invalid : {{ formControls.invalid | json }} <br> -->
+    <!-- formControls ERRORS : {{ formControls.qntd_exemplares?.errors?.max | json }} <br> -->
+    <!-- formControls ERRORS : {{ qntd_exemplares.value.length | json }} <br> -->
+    <!-- formControls touched : {{ formControls.qntd_exemplares.touched | json }} <br>
+    formControls dirty : {{ formControls.qntd_exemplares.dirty | json }} <br> -->
+
+  </p>
+
+
+</form>

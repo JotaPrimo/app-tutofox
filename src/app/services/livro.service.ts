@@ -21,8 +21,24 @@ export class LivroService extends ServiceService {
 
   create(livro: Livro): Observable<Livro> {
     return this.httpClient.post<Livro>(this.apiURL, JSON.stringify(livro), this.httpOptions)
+      .pipe(catchError(this.errorHandler));
+  }
+
+
+  findById(idLivro: number): Observable<Livro> {
+    return this.httpClient.get<Livro>(this.apiURL + idLivro)
       .pipe(catchError(this.errorHandler))
   }
 
+  update(idLivro: number, livro: Livro) {
+    return this.httpClient.put<Livro>(this.apiURL + idLivro, JSON.stringify(livro), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  delete(idLivro: number) {
+    return this.httpClient.delete<Livro>(this.apiURL + this.apiURL, this.httpOptions).pipe(catchError(this.errorHandler));
+  }
 
 }
