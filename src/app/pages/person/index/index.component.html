@@ -6,6 +6,22 @@
   </div>
 
   <br />
+  <!-- Filtros -->
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <input type="text" class="form-control" [(ngModel)]="filters.name" placeholder="Nome">
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="filters.email" placeholder="Email">
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="filters.phone" placeholder="Telefone">
+    </div>
+    <div class="col-sm-12 col-md-2">
+      <button class="btn btn-secondary" (click)="clearFilters()">Limpar Filtros</button>
+    </div>
+  </div>
+  <br>
 
   <table class="table">
     <tr>
@@ -15,14 +31,14 @@
       <th>Phone</th>
       <th width="220px">Action</th>
     </tr>
-    <tr  *ngFor="let person of persons | paginate: paginationConfig">
+    <tr *ngFor="let person of applyFilters() | paginate: paginationConfig">
       <td>{{ person.id }}</td>
       <td>{{ person.name }}</td>
       <td>{{ person.email }}</td>
       <td>{{ person.phone }}</td>
       <td>
-        <a href="#" [routerLink]="['/person/edit', person.id]" class="btn btn-primary">Edit</a>
-        <button type="button" (click)="deletePerson(person.id)" class="btn btn-danger">Delete</button>
+        <a href="#" [routerLink]="['/person/edit', person.id]" class="btn btn-secondary">Edit</a>
+        <button class="btn btn-danger" (click)="deletePerson(person.id)">Deletar</button>
       </td>
     </tr>
   </table>

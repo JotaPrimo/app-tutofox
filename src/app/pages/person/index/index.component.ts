@@ -16,6 +16,13 @@ export class IndexComponent {
   // array de persons
   persons: Person[] = [];
 
+   // Filtros agrupados em um objeto
+   filters = {
+    name: '',
+    email: '',
+    phone: ''
+  };
+
   paginationConfig = {
     currentPage: 1,
     itemsPerPage: 10
@@ -31,6 +38,22 @@ export class IndexComponent {
       this.persons = data;
       // this.data = data;
     })
+  }
+
+  // Aplicar filtros aos dados
+  applyFilters(): Person[] {
+    return this.persons.filter(data => {
+      return data.name.toLowerCase().includes(this.filters.name.toLowerCase()) &&
+             data.email.toLowerCase().includes(this.filters.email.toLowerCase()) &&
+             data.phone.toLowerCase().includes(this.filters.phone.toLowerCase());
+    });
+  }
+
+  // Limpar filtros
+  clearFilters(): void {
+    this.filters.name = '';
+    this.filters.email = '';
+    this.filters.phone = '';
   }
 
   // Função para atualizar a página atual
