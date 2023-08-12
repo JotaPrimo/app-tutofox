@@ -7,6 +7,7 @@
 
   <hr />
 
+  {{ f.name.errors | json }}
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="row">
       <div class="col-sm-12 col-md-4">
@@ -16,6 +17,11 @@
         <div *ngIf="isFieldInvalid(f.name)" class="invalid-feedback">
           <div *ngIf="f.name.errors?.required">*Name is required.</div>
           <div *ngIf="f.name.errors?.pattern">*The name must only contain letters.</div>
+          <div *ngIf="f.name.errors?.minlength">
+            *Ao menos {{ f.name.errors?.minlength?.requiredLength }} caracteres.
+            {{ f.name.errors?.minlength?.actualLength }} no momento
+          </div>
+          <div *ngIf="f.name.errors?.maxlength">*No máximo  deve ter caracteres</div>
         </div>
         <div *ngIf="f.name.valid" class="valid-feedback">Isto parece bom</div>
       </div>
