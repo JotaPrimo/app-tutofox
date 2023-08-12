@@ -7,49 +7,52 @@
 
   <hr>
 
-  <form>
-      <div class="form-group row">
-          <div class="col-md-6 ">
-            <label for="title">Name:</label>
-            <input
-              id="name"
-              type="text"
-              class="form-control">
-            <div class="alert alert-danger">
-                <div>*Name is required.</div>
-                <div>*The name must only contain letters.</div>
-            </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-md-4 ">
+        <label for="title">Name:</label>
+        <input id="name" formControlName="name" placeholder="Informe o nome" type="text" [(ngModel)]="person.name"
+          class="form-control" [ngClass]="{'is-invalid': isFieldInvalid(f.name), 'is-valid':f.name.valid}">
+        <div *ngIf="isFieldInvalid(f.name)" class="invalid-feedback">
+          <div *ngIf="f.name.errors?.required">*Name is required.</div>
+          <div *ngIf="f.name.errors?.pattern">*The name must only contain letters.</div>
+          <div *ngIf="f.name.errors?.minlength">
+            *Ao menos {{ f.name.errors?.minlength?.requiredLength }} caracteres.
+            {{ f.name.errors?.minlength?.actualLength }} no momento
           </div>
+          <div *ngIf="f.name.errors?.maxlength">*No máximo deve ter caracteres</div>
+        </div>
+        <div *ngIf="f.name.valid" class="valid-feedback">Isto parece bom</div>
       </div>
 
-      <div class="form-group row">
-          <div class="col-md-6 ">
-            <label for="email">Email:</label>
-            <input
-              id="email"
-              type="text"
-              class="form-control">
-            <div class="alert alert-danger">
-                <div>*Email is required.</div>
-                <div>*The email must be a valid email address.</div>
-            </div>
+      <div class="col-md-4 ">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" [(ngModel)]="person.email" type="text" class="form-control"
+          [ngClass]="{'is-invalid': isFieldInvalid(f.email), 'is-valid':f.email.valid}">
+        <div *ngIf="isFieldInvalid(f.email)" class="invalid-feedback">
+          <div *ngIf="f.email.errors?.required">*Email is required.</div>
+          <div *ngIf="f.email.errors?.pattern">*The email must only contain letters.</div>
+          <div *ngIf="f.email.errors?.minlength">
+            *Ao menos {{ f.email.errors?.minlength?.requiredLength }} caracteres.
+            {{ f.name.errors?.minlength?.actualLength }} no momento
           </div>
+          <div *ngIf="f.email.errors?.maxlength">*No máximo deve ter caracteres</div>
+        </div>
+        <div *ngIf="f.email.valid" class="valid-feedback">Isto parece bom</div>
       </div>
 
-      <div class="form-group row">
-          <div class="col-md-6 ">
-            <label for="phone">Phone:</label>
-            <input
-              id="phone"
-              type="text"
-              class="form-control">
-            <div class="alert alert-danger">
-                <div>*Phone is required.</div>
-                <div>*The phone must only contain numbers.</div>
-            </div>
-          </div>
+      <div class="col-md-4 ">
+        <label for="phone">Phone:</label>
+        <input id="phone" formControlName="phone" [(ngModel)]="person.phone" type="text" class="form-control"
+          [ngClass]="{'is-invalid': isFieldInvalid(f.phone), 'is-valid':f.phone.valid}">
+        <div *ngIf="isFieldInvalid(f.phone)" class="invalid-feedback">
+          <div *ngIf="f.phone.errors?.required">*Email is required.</div>
+          <div *ngIf="f.phone.errors?.pattern">*The email must only contain letters.</div>
+        </div>
+        <div *ngIf="f.phone.valid" class="valid-feedback">Isto parece bom</div>
       </div>
+    </div>
 
-      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
   </form>
 </div>

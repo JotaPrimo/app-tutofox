@@ -15,7 +15,7 @@
       <th>Phone</th>
       <th width="220px">Action</th>
     </tr>
-    <tr *ngFor="let person of persons">
+    <tr  *ngFor="let person of persons | paginate: paginationConfig">
       <td>{{ person.id }}</td>
       <td>{{ person.name }}</td>
       <td>{{ person.email }}</td>
@@ -26,4 +26,9 @@
       </td>
     </tr>
   </table>
+
+  <div class="pagination-container">
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>
+
 </section>

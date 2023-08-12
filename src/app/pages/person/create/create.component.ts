@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../person.service';
 import { Route, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/alerts/alert.service';
 
 @Component({
   selector: 'app-create',
@@ -16,7 +17,8 @@ export class CreateComponent implements OnInit {
 
   constructor(
     public personService: PersonService,
-    private router: Router
+    private router: Router,
+    public alertService: AlertService
   ) { }
 
 
@@ -35,7 +37,8 @@ export class CreateComponent implements OnInit {
   submit() {
     console.log(this.form.value);
     this.personService.create(this.form.value).subscribe(res => {
-      alert('Correu tudo bem')
+      this.alertService.showSuccess('Correu tudo certo');
+
       this.router.navigateByUrl('person/index');
     }, (err) => {
       alert('Ocorreu um erro')
