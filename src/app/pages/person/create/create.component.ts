@@ -35,10 +35,20 @@ export class CreateComponent implements OnInit {
   submit() {
     console.log(this.form.value);
     this.personService.create(this.form.value).subscribe(res => {
-      console.log('Person created successfully');
+      alert('Correu tudo bem')
       this.router.navigateByUrl('person/index');
+    }, (err) => {
+      alert('Ocorreu um erro')
     })
 
+  }
+
+  isFieldInvalid(field: any): boolean {
+    return field.invalid && (field.dirty || field.touched);
+  }
+
+  isFormValid() {
+    return this.form.valid;
   }
 
 }
