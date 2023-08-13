@@ -1,0 +1,67 @@
+<section class="mt-5">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex justify-content-between">
+        <div class="card-title">Listing all books</div>
+        <a [routerLink]="[ '/livro/create' ]" class="btn btn-success btn-sm">New Book</a>
+      </div>
+    </div>
+
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <label for="titulo">Title</label>
+          <input type="text" [(ngModel)]="filters.titulo" class="form-control" name="titulo" id="titulo" placeholder="Título">
+        </div>
+        <div class="col">
+          <label for="titulo">Author</label>
+          <input type="text" [(ngModel)]="filters.autor" class="form-control" name="autor" id="autor" placeholder="Author">
+        </div>
+        <div class="col">
+          <label for="titulo">ISBN</label>
+          <input type="text" [(ngModel)]="filters.isbn" class="form-control" name="isbn" id="isbn" placeholder="ISBN">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-2">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Qtd Exemplares</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let livro of applyFilters()">
+            <td>{{ livro.id }}</td>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.autor }}</td>
+            <td>{{ livro.isbn }}</td>
+            <td>{{ livro.qntd_exemplares }}</td>
+            <td>
+              <div class="d-flex gap-2">
+
+                <a [routerLink]="['/livro/edit/', livro.id]" class="btn btn-sm btn-warning">
+                  Editar
+                </a>
+
+                <button (click)="deleteLivro(livro.id)" class="btn btn-sm btn-danger">
+                  Deletar
+                </button>
+
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
