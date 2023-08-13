@@ -23,24 +23,43 @@
   </div>
   <br>
 
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
+  <table class="table table-striped">
+    <thead class="table-light shadow">
+      <th (click)="sortByColumn('id')">
+        #ID
+        <app-sort-icon [isAscending]="sortedColumn === 'id' && isAscending"></app-sort-icon>
+      </th>
+      <th (click)="sortByColumn('name')">
+        Name
+        <app-sort-icon [isAscending]="sortedColumn === 'name' && isAscending"></app-sort-icon>
+      </th>
+      <th (click)="sortByColumn('email')">
+        Email
+        <app-sort-icon [isAscending]="sortedColumn === 'email' && isAscending"></app-sort-icon>
+      </th>
+      <th (click)="sortByColumn('phone')">
+        Phone
+        <app-sort-icon [isAscending]="sortedColumn === 'phone' && isAscending"></app-sort-icon>
+      </th>
       <th width="220px">Action</th>
-    </tr>
-    <tr *ngFor="let person of applyFilters() | paginate: paginationConfig">
-      <td>{{ person.id }}</td>
-      <td>{{ person.name }}</td>
-      <td>{{ person.email }}</td>
-      <td>{{ person.phone }}</td>
-      <td>
-        <a href="#" [routerLink]="['/person/edit', person.id]" class="btn btn-secondary">Edit</a>
-        <button class="btn btn-danger" (click)="deletePerson(person.id)">Deletar</button>
-      </td>
-    </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let person of applyFilters() | paginate: paginationConfig">
+        <td>{{ person.id }}</td>
+        <td>{{ person.name }} </td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.phone }}</td>
+        <td class="d-flex gap-2">
+          <a href="#" [routerLink]="['/person/edit', person.id]" class="btn btn-warning bg-warning">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+          <button class="btn btn-sm bg-danger" (click)="deletePerson(person.id)">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 
   <div class="pagination-container">

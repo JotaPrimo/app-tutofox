@@ -13,21 +13,22 @@ import { EditComponent } from './edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
-
+// icons
+import { SortIconComponent } from 'src/app/components/sort-icon/sort-icon.component';
 
 @NgModule({
   declarations: [
+    SortIconComponent,
     IndexComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     CommonModule,
     PersonRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class PersonModule { }

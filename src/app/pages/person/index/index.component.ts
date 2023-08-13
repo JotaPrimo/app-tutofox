@@ -16,8 +16,13 @@ export class IndexComponent {
   // array de persons
   persons: Person[] = [];
 
-   // Filtros agrupados em um objeto
-   filters = {
+  // Coluna atualmente ordenada
+  sortedColumn: string = '';
+  // Ordem ascendente (true) ou descendente (false)
+  isAscending: boolean = true;
+
+  // Filtros agrupados em um objeto
+  filters = {
     name: '',
     email: '',
     phone: ''
@@ -36,7 +41,6 @@ export class IndexComponent {
     // assim que iniciar o componente, carregar a listagem de usuarios
     this.personService.getAll().subscribe((data: Person[]) => {
       this.persons = data;
-      // this.data = data;
     })
   }
 
@@ -44,8 +48,8 @@ export class IndexComponent {
   applyFilters(): Person[] {
     return this.persons.filter(data => {
       return data.name.toLowerCase().includes(this.filters.name.toLowerCase()) &&
-             data.email.toLowerCase().includes(this.filters.email.toLowerCase()) &&
-             data.phone.toLowerCase().includes(this.filters.phone.toLowerCase());
+        data.email.toLowerCase().includes(this.filters.email.toLowerCase()) &&
+        data.phone.toLowerCase().includes(this.filters.phone.toLowerCase());
     });
   }
 
@@ -60,6 +64,32 @@ export class IndexComponent {
   onPageChange(newPage: number): void {
     this.paginationConfig.currentPage = newPage;
   }
+
+  // Função para ordenar os dados com base na coluna
+  // Função para ordenar os dados com base na coluna
+  sortByColumn(column: keyof Person): void {
+    if (this.sortedColumn === column) {
+      this.isAscending = !this.isAscending;
+    } else {
+      this.sortedColumn = column;
+      this.isAscending = true;
+    }
+
+    this.persons.sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        const comparison = aValue.localeCompare(bValue);
+        return this.isAscending ? comparison : -comparison;
+      } else if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return this.isAscending ? aValue - bValue : bValue - aValue;
+      }
+
+      return 0; // Se os tipos forem diferentes ou não suportados, não ordena
+    });
+  }
+
 
   deletePerson(idPerson: number) {
     this.alertService
